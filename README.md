@@ -1,3 +1,5 @@
-# py-cooperhewitt-roboteyes
+# py-cooperhewitt-roboteyes-atkinson
 
-Meta package to install all the Cooper Hewitt computer vision libraries.
+## See also
+
+* https://github.com/migurski/atkinson
