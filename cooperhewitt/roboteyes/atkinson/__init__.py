@@ -1,39 +1,40 @@
 import Image
 import logging
 
-def dither(src_path, dest_path):
+def dither(src_path, dest_path, mime_type='GIF'):
 
     # Dithering in C because it is faster
     # https://github.com/migurski/atkinson
     
     try:
         try:
-            return dither_image_atk(src_path, dest_path)
+            return dither_image_atk(src_path, dest_path, mime_type)
         except Exception, e:
-            return dither_image_python(src_path, dest_path)
+            logging.debug("dither using pure python")
+            return dither_image_python(src_path, dest_path, mime_type)
         
-        except Exception, e:
+    except Exception, e:
             
-            # Sigh... things like: IOError: Unsupported BMP compression (1)
-            
-            logging.error("failed to dither %s: %s" % (src_path, e))
-            return False
-
-def dither_image_atk(src_path, dest_path):
-
-        import atk
-        img = Image.open(src_path)
-        img = img.convert('L')
-        sz = img.size
+        # Sigh... things like: IOError: Unsupported BMP compression (1)
         
-        tmp = atk.atk(sz[0], sz[1], img.tostring())
-        new = Image.fromstring('L', sz, tmp)
+        logging.error("failed to dither %s: %s" % (src_path, e))
+        return False
 
-        new = img.convert('1')
-        new.save(dest_path)
-        return True
+def dither_image_atk(src_path, dest_path, mime_type):
 
-def dither_image_python(src_path, dest_path):
+    import atk
+    img = Image.open(src_path)
+    img = img.convert('L')
+    sz = img.size
+    
+    tmp = atk.atk(sz[0], sz[1], img.tostring())
+    new = Image.fromstring('L', sz, tmp)
+    
+    new = img.convert('1')
+    new.save(dest_path, mime_type)
+    return True
+    
+def dither_image_python(src_path, dest_path, mime_type):
 
     img = Image.open(src_path)
     img = img.convert('L')
@@ -57,7 +58,7 @@ def dither_image_python(src_path, dest_path):
 
     img = img.convert('1')
 
-    img.save(dest_path)
+    img.save(dest_path, mime_type)
     return True
 
 if __name__ == '__main__':
