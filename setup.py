@@ -7,7 +7,7 @@ desc = open("README.md").read(),
 
 setup(
     name='cooperhewitt.roboteyes.atkinson',
-    namespace_packages=['cooperhewitt'],
+    namespace_packages=['cooperhewitt', 'cooperhewitt.roboteyes'],
     version='0.2',
     description='',
     author='Cooper Hewitt Smithsonian Design Museum',
@@ -20,5 +20,5 @@ setup(
     ],
     packages=packages,
     scripts=[],
-    download_url='https://github.com/cooperhewitt/py-cooperhewitt-roboteyes-atkinson/releases/tag/v0.2',
+    download_url='https://github.com/cooperhewitt/py-cooperhewitt-roboteyes-atkinson/tarball/master',
     license='BSD')
