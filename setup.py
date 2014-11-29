@@ -8,7 +8,7 @@ desc = open("README.md").read(),
 setup(
     name='cooperhewitt.roboteyes.atkinson',
     namespace_packages=['cooperhewitt', 'cooperhewitt.roboteyes'],
-    version='0.2',
+    version='0.3',
     description='',
     author='Cooper Hewitt Smithsonian Design Museum',
     url='https://github.com/cooperhewitt/py-cooperhewitt-roboteyes-atkinson',
@@ -17,6 +17,7 @@ setup(
       ],
     install_requires=[
         'atk',
+        'Pillow'
     ],
     packages=packages,
     scripts=[],

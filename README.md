@@ -1,5 +1,8 @@
 # py-cooperhewitt-roboteyes-atkinson
 
+Functions for generating black and white images using Bill Atkinson's dithering
+algorithm.
+
 ## Usage
 
 ### Simple
@@ -13,6 +16,10 @@
 	atkinson.dither(source, dest)
 
 ### Fancy
+
+By default `cooperhewitt.roboteyes.atkinson` try to use the faster C-based `atk`
+library to dither images falling back to a pure-Python version if necessary. You
+can for the issue like this:
 
 	import sys
 	import cooperhewitt.roboteyes.atkinson as atkinson
