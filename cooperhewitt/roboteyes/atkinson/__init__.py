@@ -1,4 +1,4 @@
-import Image
+from PIL import Image
 import logging
 
 def dither(src_path, dest_path, mime_type='GIF'):
